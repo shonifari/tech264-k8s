@@ -1,0 +1,23 @@
+# NGINX DEPLOYMENT
+apiVersion: apps/v1  # specify api to use for deployment
+kind : Deployment  # kind of service/object you want to create
+metadata:
+  name: nginx-deployment 
+spec:
+  selector:
+    matchLabels:
+      app: nginx # look for this labe/tag to match the k8n service
+
+  # Creaate a ReplicaSet with instances/pods
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image:  shonifari8/tech264-custom-nginx:v1
+        ports:
+        - containerPort: 80
+
