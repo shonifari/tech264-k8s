@@ -1,0 +1,24 @@
+# SPARTA APP DEPLOYMENT
+apiVersion: apps/v1  # specify api to use for deployment
+kind : Deployment  # kind of service/object you want to create
+metadata:
+  name: db-deployment 
+spec:
+  selector:
+    matchLabels:
+      app: sparta-app-db # look for this labe/tag to match the k8n service
+
+  # Creaate a ReplicaSet with instances/pods
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sparta-app-db
+    spec:
+      containers:
+      - name: sparta-app-db
+        image: mongodb/mongodb-community-server:7.0.6-ubuntu2204
+        ports:
+        - containerPort: 27017
+
+

@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sparta-app-db-svc
+  namespace: default
+spec:
+  ports:
+  - nodePort: 30002
+    port: 27017
+    targetPort: 27017
+  selector:
+    app: sparta-app-db  # Label to match service to deployment
+  type: NodePort
