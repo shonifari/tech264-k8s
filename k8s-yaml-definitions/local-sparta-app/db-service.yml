@@ -6,9 +6,9 @@ metadata:
   namespace: default
 spec:
   ports:
-  - nodePort: 30002
+  - protocol: TCP
     port: 27017
     targetPort: 27017
   selector:
     app: sparta-app-db  # Label to match service to deployment
-  type: NodePort
+  type: ClusterIP

@@ -22,8 +22,6 @@ spec:
         - containerPort: 3000
         env:
           - name: DB_HOST
-            value: mongodb://sparta-app-db-svc.default.svc.cluster.local:27017/posts
+            value: mongodb://sparta-app-db-svc:27017/posts
 
-        command: ["/bin/sh", "-c"]
-        args: ["node seeds/seed.js && npm start app.js"]
 
