@@ -1,0 +1,30 @@
+# DB DEPLOYMENT
+apiVersion: apps/v1  # specify api to use for deployment
+kind : Deployment  # kind of service/object you want to create
+metadata:
+  name: db-deployment 
+spec:
+  selector:
+    matchLabels:
+      app: sparta-app-db # look for this labe/tag to match the k8n service
+
+  # Creaate a ReplicaSet with instances/pods
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sparta-app-db
+    spec:
+      containers:
+      - name: sparta-app-db
+        image: mongo:7.0.6
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - mountPath: /data/db
+          name: db-storage
+
+      volumes:
+      - name: db-storage
+        persistentVolumeClaim:
+          claimName: app-db-pvc

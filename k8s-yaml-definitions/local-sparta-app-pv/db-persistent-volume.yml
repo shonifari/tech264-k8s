@@ -1,0 +1,19 @@
+---
+# db-persistent-volume.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: app-db-pv
+  labels:
+    type: local
+spec:
+  claimRef:
+    namespace: default
+    name: app-db-pvc
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/db
